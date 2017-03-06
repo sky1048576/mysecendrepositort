@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block head_title %}home_title{% endblock %}
+{% block content %}
+<h1>home_update.html</h1>
+<h1 id="sh">shahb</h1>
+<form  id="myForm" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{formset.management_form}}
+    <table role="grid"class="stack kover" >
+    	<thead>
+    		<th scope="col" class="text-center">question</th>
+    		<th scope="col" class="text-center">it has</th>
+    	
+    	</thead>
+    	<tbody>
+    		{% for form in formset %}
+    		<tr>
+    			<td>{{form.question}}</td>
+    			<td>{{form.answer}}</td>
+    	
+    		</tr>
+    			
+    		{% endfor %}
+    	</tbody>
+    	
+    </table>
+
+        <input type="submit" value="Submit" />
+ </form>
+<h1 id="sh">shahb</h1>
+ {% endblock %}
+
+
+ {% block jquery %}
+
+$("#sh").css( { marginLeft : "550px", marginRight : "200px" ,color:"blue"} );
+   
+                   $('#myForm tbody tr').formset({
+                   prefix: '{{ formset.prefix }}'
+               });
+   
+     {% endblock %}

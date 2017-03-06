@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block head_title %}home_title{% endblock %}
+{% block content %}
+<a href="{% url 'persons:formset' %}">formset</a>
+<hr>
+<a href="{% url 'persons:query' %}">query</a>
+
+{% if homes %}
+{% for home in homes %}
+{% for image_of_home in home.picture_set.all %}
+
+    <div id="po" class="thumbnail">
+
+    <a href="{% url 'persons:detail_home' home_id=image_of_home.homeid %}"><img class="img-rounded" alt="Cinque Terre" id="img"src="{{image_of_home.image.url}}" /></a>
+      
+</div>
+	{% endfor%}
+{% endfor %}
+
+
+
+ 
+
+
+{% else %}
+	they are not any home for this search
+
+
+{% endif %}
+
+
+{% endblock %}
+
+
+   {% block jquery %}
+
+       $.ajax({
+    url: '',
+    type: 'get', // This is the default though, you don't actually need to always mention it
+    success: function(data) {
+        <!-- alert(data); -->
+        <!-- alert("shahab"); -->
+    },
+    failure: function(data) { 
+        alert('Got an error dude');
+    }
+}); 
+    {% endblock %}

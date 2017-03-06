@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block head_title %}home_title{% endblock %}
+{% block content %}
+this is from detail user
+    <div id="po" class="thumbnail">
+<div style="text-align:center">
+{{u.username}}
+<hr/>
+<h3>نام</h3>
+{{u.first_name}}
+<hr/>
+
+
+<h3>نام خانوادگی</h3>
+{{u.last_name}}
+<hr/>
+
+
+<h3>کد ملی</h3>
+{{u.member.national_code}}
+<hr/>
+
+
+<h3>شماره تلفن</h3>
+{{u.member.phone_number}}
+<hr/>
+</div>
+</div>
+
+    <hr/>
+    <hr/>
+{{ u.home_set.all }}
+    <br>
+{{ u.home_set.count }}
+
+    <br>
+{{ u.home_set.count|apnumber }}
+
+<hr>
+ {% with member=u.member  %}
+ {{ name }}
+    {{ member.about|linebreaks }}
+    content:{{ member.about|wordcount }}words
+
+    {% if member.about|wordcount <= 10 %}
+        {{ member.about }}
+    {% else %}
+        {{ member.about|truncatewords:5 }}
+     {% endif %}
+
+     <div>
+     you can contact with me in:{{ u.email|urlize }}
+     my site is:{{ mysite|urlize }}
+     </div>
+ {% endwith %}
+{% endblock %}

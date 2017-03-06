@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block head_title %}home_title{% endblock %}
+{% block content %}
+<h1 id="sh">shahb</h1>
+<h1>this is in add_home.html</h1>
+<form  method="post"enctype="multipart/form-data" style="text-align: center">
+    {% csrf_token %}
+    {{ form1.as_p }}
+    {{ form2.as_p }}
+
+
+<br/>
+استانی که خانه در ان واقع است را انتخاب کنید
+<br/>
+
+    <select name="state" id="ostan">
+      <option ></option>
+        {% for state in states %}
+          <option value="{{state.name}}">{{ state.name}}</option>
+        {% endfor %}
+    </select>
+      <span class="userror"></span>
+    <br/>
+
+شهرستانی که خانه در ان واقع است را انتخاب کنید
+<br/>
+
+    <select name="city" id="city">
+    <option></option>
+    </select>
+    <span class="pserror"></span>
+                   
+<br/>
+           <input id="btn" class="btn btn-primary" type="submit" value="send" />
+
+</form>
+
+{{user.username}}
+
+
+{% endblock %}
+    
+
+    {% block jquery %}
+  
+$("#sh").css( { marginLeft : "550px", marginRight : "200px" ,color:"blue"} );
+$("#id_image").css( { marginLeft : "550px", marginRight : "200px" } );
+  
+    $("#ostan").change(function () {
+      var ostan_name = $(this).val();
+      <!-- alert(ostan_name); -->
+      console.log(typeof ostan_name)
+
+
+      $.ajax({
+        url: "{% url 'persons:select_citys' %}",
+        data: {
+          'ostan_name': ostan_name,
+        },
+      success: function(data){
+  console.log(data);
+$("#city").empty(); 
+   var op = $('<option></option>').attr("value", "").text("");
+ var i;
+  for(i in data){
+  <!-- alert(i); -->
+  <!-- alert(data[i]); -->
+   var option = $('<option></option>').attr("value", i).text(data[i]);
+$("#city").append(option);
+ 
+ } }
+  });
+      });
+  
+$('#btn').click(function(){
+
+  var username=$("#state").val();
+  var password=$("#city").val();
+  var error = false;
+  if (username =='') {
+    error = true;
+    $('.userror').html("<font color='red'>*</font>");
+  }
+  
+  if (password =='') {
+    error = true;
+    $('.pserror').html("<font color='red'>*</font>");
+  }
+  if (error) {return false;}
+
+  });
+    
+{% endblock %}

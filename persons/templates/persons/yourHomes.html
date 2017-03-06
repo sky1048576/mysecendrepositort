@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block head_title %}home_title{% endblock %}
+{% block content %}
+
+
+
+
+yourHomes:
+<br/>
+{%if yourHomes%}
+{% for home in yourHomes%}
+		<a href="/persons/home/{{home.id}}/">{{home.name}}</a>
+		<br/>
+	{% endfor%}
+{% else %}
+<p>شما هنوز خانه ای برای فروش به ما معرفی نکرده اید</p>
+{% endif %}
+if you have a house and you would like to soil it you can do it
+		<a href="{% url 'persons:add_home' %}">here</a>
+<hr/>
+
+{% endblock %}

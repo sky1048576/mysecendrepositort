@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block head_title %}home_title{% endblock %}
+{% block content %}
+    this is from information.html in global templates
+<hr/>
+
+<hr/>
+    <hr>
+اینجا میتوانید اطلاعات خود را ویرایش و به روز رسانی کنید.
+<form  method="post"enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form1.as_p }}
+    {{ form2.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

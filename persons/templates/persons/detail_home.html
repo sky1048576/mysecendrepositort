@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block head_title %}home_title{% endblock %}
+{% block content %}
+<a href="/persons/{{home.id}}/edit/">edit this home</a>
+<div id="po" class="thumbnail">
+    <div style="text-align:center">
+
+ {{ home.timestamp }}
+        <hr>
+ {{ home.timestamp|date:"F j,Y" }}
+        <hr>
+        {{ home.timestamp|date:"m/d/y" }}
+<h3>نام</h3>
+{{home.name}}
+<hr/>
+<h3>استان</h3>
+{{home.state}}
+<hr/>
+<h3>شهر</h3>
+{{home.city}}
+<hr/>
+<h3>آدرس</h3>
+{{home.address|linebreaks}}
+<hr/>
+
+{{home.about}}
+<hr/>
+
+
+<br/>
+<a href="/persons/users/{{owner.id}}/">{{owner.username}}</a>
+<a href="{% url 'persons:users' user_id=owner.pk %}">{{owner.username}}</a>
+<br/>شماره تلفن:{{owner.member.phone_number}}
+
+
+<!-- this is comment -->
+<!-- <img src="{{home.image.url}}" />
+ -->
+
+<hr>
+</div>
+{% for p in pictures %}
+    <img id="img" src="{{p.image.url}}" />
+    {% if user.username ==  owner.username %}
+
+    <a href="/persons/image/{{p.id}}/delete/">delete this picture</a>
+    {% endif %}
+
+    <hr>
+
+{% endfor%}
+</div>        
+
+    {% if user.username ==  owner.username %}
+<form  method="post"enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input  type="submit" value="Submit" />
+</form>
+		<a href="/persons/{{home.id}}/delete/">delete this home</a>
+        <br/>
+		<a href="/persons/{{home.id}}/edit/">edit this home</a>
+{% endif %}
+
+</div>
+
+<!-- Comments -->
+<div id="po" class="thumbnail">
+<div style="text-align:center">
+{% for com in comments %}
+   <h4><a href="/persons/users/{{com.writer.id}}/">{{com.writer}}</a></h4> 
+
+
+{% autoescape off %}
+{{com.text}}
+{% endautoescape %}
+    <hr>
+
+{% endfor%}
+
+    {% if user.is_authenticated %}
+
+<form  method="post">
+    {% csrf_token %}
+    {{ form2.media }}
+    {{ form2.as_p }}
+    <input  type="submit" value="ارسال نظر" />
+</form>
+
+    {% endif %}
+
+</div>
+</div>
+
+{% endblock %}
