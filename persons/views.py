@@ -17,9 +17,7 @@ from django.forms import inlineformset_factory
 
 from django.db.models import Count, Min, Sum, Avg
 
-import winsound
-Freq = 2500 # Set Frequency To 2500 Hertz
-Dur = 1000 # Set Duration To 1000 ms == 1 second
+
 
 
 class SignUpView(CreateView):
@@ -177,7 +175,6 @@ def home_update(request,home_id = None):
         formset = TFInlineFormSet(request.POST,queryset=instance.truefalsequestion_set.all())
 
         if form.is_valid() and formset.is_valid():
-             # winsound.Beep(Freq,Dur)
             instance = form.save(commit=False)
             instance.save()
             tfqs = formset.save(commit = False)
