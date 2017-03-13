@@ -149,6 +149,9 @@ LOGIN_REDIRECT_URL = '/persons/yourHomes'
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 
 CKEDITOR_UPLOAD_SLUGIFY_FILENAME=True
 
