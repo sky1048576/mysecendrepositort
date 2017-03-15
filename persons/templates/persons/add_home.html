@@ -3,8 +3,7 @@
 
 {% block head_title %}home_title{% endblock %}
 {% block content %}
-<h1 id="sh">shahb</h1>
-<h1>this is in add_home.html</h1>
+
 <form  method="post"enctype="multipart/form-data" style="text-align: center">
     {% csrf_token %}
     {{ form1.as_p }}

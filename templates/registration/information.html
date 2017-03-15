@@ -1,12 +1,7 @@
 {% extends "base.html" %}
 {% block head_title %}home_title{% endblock %}
 {% block content %}
-    this is from information.html in global templates
-<hr/>
-
-<hr/>
-    <hr>
-اینجا میتوانید اطلاعات خود را ویرایش و به روز رسانی کنید.
+<h3>edit your profile:</h3>
 <form  method="post"enctype="multipart/form-data">
     {% csrf_token %}
     {{ form1.as_p }}

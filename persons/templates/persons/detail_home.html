@@ -3,15 +3,12 @@
 
 {% block head_title %}home_title{% endblock %}
 {% block content %}
-<a href="/persons/{{home.id}}/edit/">edit this home</a>
 <div id="po" class="thumbnail">
     <div style="text-align:center">
-
+<h3>تاریخ معرفی</h3>
  {{ home.timestamp }}
         <hr>
- {{ home.timestamp|date:"F j,Y" }}
-        <hr>
-        {{ home.timestamp|date:"m/d/y" }}
+
 <h3>نام</h3>
 {{home.name}}
 <hr/>
@@ -30,7 +27,6 @@
 
 
 <br/>
-<a href="/persons/users/{{owner.id}}/">{{owner.username}}</a>
 <a href="{% url 'persons:users' user_id=owner.pk %}">{{owner.username}}</a>
 <br/>شماره تلفن:{{owner.member.phone_number}}
 

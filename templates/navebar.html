@@ -12,30 +12,7 @@
           </button>
           <a class="navbar-brand" href="{% url 'home' %}">KhaneYabi</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            
-             
-              {% if not request.user.is_authenticated and not "/login" in request.get_full_path %}
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">login <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-              <form class="navbar-form navbar-right" method="POST" action='{% url "login_view"%}'>{% csrf_token %}
-              <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="username"/>
-                </div>
-              <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="password"/>
-                </div>  
-                <button type="submit" class="btn btn-default"> login</button>
-              </form>
-                    <p class="text-center" ><a href="{% url 'password_reset' %}">forgot password?</a></p>
-
-              {% endif %}             
-              </ul>
-              </ul>
-            </li>
-          </ul>
+   
           <form class="navbar-form navbar-right" role="search" action="{% url 'home' %}">
           <div class="form-group">
             <input type="text" class="form-control" name="q" placeholder="Search">
