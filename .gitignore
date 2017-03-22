@@ -99,3 +99,4 @@ ENV/
 .ropeproject
 local_settings.py
 
+'*.sqlite3' 
