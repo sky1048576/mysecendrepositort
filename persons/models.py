@@ -33,7 +33,7 @@ class Home(models.Model):
         return "/persons/home/%s/" %self.pk
 class Picture(models.Model):
     homeid = models.ForeignKey(Home)
-    image = models.URLField(upload_to='persons')
+    image = models.URLField(blank=True,null=True)
     timestamp = models.DateTimeField(auto_now_add=True,auto_now=False)
     updated = models.DateTimeField(auto_now_add=False,auto_now=True)
     def __str__(self):
