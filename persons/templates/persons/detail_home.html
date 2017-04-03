@@ -38,7 +38,7 @@
 <hr>
 </div>
 {% for p in pictures %}
-    <img id="img" src="{{p.image.url}}" />
+    <img id="img" src="{{p.image}}" />
     {% if user.username ==  owner.username %}
 
     <a href="/persons/image/{{p.id}}/delete/">delete this picture</a>

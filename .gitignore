@@ -100,4 +100,5 @@ ENV/
 local_settings.py
 
 '*.sqlite3' 
+*.sqlite3
 *.sqlite
