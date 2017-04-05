@@ -12,7 +12,22 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect
 from persons.models import Member
+from .models import Like
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.http import JsonResponse
 
+@login_required
+def like(request):
+    home_id = request.GET.get('home_id'or None)
+    new_like, created = Like.objects.get_or_create(user=request.user, home_id=home_id)
+    # return HttpResponseRedirect(new_like.home.get_absolute_url())
+    a={}
+    if not created:
+        a["message"]= "you like it before"
+    else:
+        a["message"]= "you like it"
+    return JsonResponse(a)
 
 def register(request, ):
     form = ReistrationForm(request.POST or None)

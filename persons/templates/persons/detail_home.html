@@ -47,6 +47,20 @@
     <hr>
 
 {% endfor%}
+    <div style="text-align:center">
+{% if user.is_authenticated %}
+    {% if liked %}
+        you like this home
+    {% else %}
+            <button id="btnLike" class="btn btn-info btn-lg">
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>like     
+            </button>
+            <div id="message"></div>
+    
+    {% endif %}        
+
+{% endif %}
+    </div>
 </div>        
 
     {% if user.username ==  owner.username %}
@@ -91,3 +105,28 @@
 </div>
 
 {% endblock %}
+
+
+
+{% block jquery %}
+var a = "{{home.id}}";
+
+       $("#btnLike").click(function () {
+            $.ajax({
+                    url: "{% url 'accounts:like' %}",
+                    data: {
+                        'home_id': a,
+                    },
+                    success: function(data){
+                    {# alert(data["message"]) #}
+                   var message = data["message"];
+                   message =
+                $("#message").html(message)
+         
+                 
+                 } }     )
+
+
+            });
+   
+{% endblock jquery %}

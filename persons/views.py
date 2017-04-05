@@ -16,6 +16,7 @@ from django.db.models import Q
 from django.forms import inlineformset_factory
 
 from django.db.models import Count, Min, Sum, Avg
+from accounts.models import Like
 
 
 
@@ -141,15 +142,17 @@ def detail_home(request,home_id):
         _comment.home=h
         _comment.writer=current_user
         _comment.save()
-
-    # context ={
-    #         "home":h
-    #         "owner":f
-    #         "pictures":im_of_this_house
-    #         "form":form
-    #         "form2":form2
-    #                 }
-    return render(request,'persons/detail_home.html',{'home':h,'owner':f,'pictures':im_of_this_house,'form':form,'form2':form2,'comments':comments})
+    liked = Like.has_liked(request.user, h)
+    context ={
+            "home":h,
+            "owner":f,
+            "pictures":im_of_this_house,
+            "form":form,
+            "form2":form2,
+            'comments':comments,
+            'liked':liked,
+                    }
+    return render(request,'persons/detail_home.html', context)
 
 def detail_user(request,user_id):
     u = get_object_or_404(User,id=user_id)
