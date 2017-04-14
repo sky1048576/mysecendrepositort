@@ -26,8 +26,61 @@ class SignUpView(CreateView):
     form_class = UserCreationForm
 
 
+def add_a_ana(request,id):
+    home = Home.objects.get(id=id)
+    print("########################################################")
+    print(home.name)
+    print("########################################################")
+    print("home.votes=  "+str(home.votes))
+    print("########################################################")
+    print("home.total_upvotes=  "+str(home.total_upvotes))
+    print("########################################################")
+    print("home.total_downvotes=    "+str(home.total_downvotes))
+    print("########################################################")
+    print("home.vote_total= "+str(home.vote_total))
+    print("########################################################")
+    home.add_vote("hasan",1)
+    print("########################################################")
+ 
+    return HttpResponseRedirect(home.get_absolute_url())
 
 
+def remove_a_ana(request,id):
+    home = Home.objects.get(id=id)
+    print("########################################################")
+    print(home.name)
+    print("########################################################")
+    print("home.votes=  "+str(home.votes))
+    print("########################################################")
+    print("home.total_upvotes=  "+str(home.total_upvotes))
+    print("########################################################")
+    print("home.total_downvotes=    "+str(home.total_downvotes))
+    print("########################################################")
+    print("home.vote_total= "+str(home.vote_total))
+    print("########################################################")
+    home.remove_vote("hasan")
+    # ba in dastoor mitavan araye mosbat ya manfi ra remove kard
+    print("########################################################")
+ 
+    return HttpResponseRedirect(home.get_absolute_url())
+
+def updown(request,id):
+    home = Home.objects.get(id=id)
+    print("########################################################")
+    print(home.name)
+    print("########################################################")
+    print("home.votes=  "+str(home.votes))
+    print("########################################################")
+    print("home.total_upvotes=  "+str(home.total_upvotes))
+    print("########################################################")
+    print("home.total_downvotes=    "+str(home.total_downvotes))
+    print("########################################################")
+    print("home.vote_total= "+str(home.vote_total))
+    print("########################################################")
+    home.add_vote("hasan",-1)
+    print("########################################################")
+ 
+    return HttpResponseRedirect(home.get_absolute_url())
 
 def validate_username(request):
     username = request.GET.get('username', None)

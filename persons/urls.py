@@ -8,6 +8,13 @@ urlpatterns = [
     url(r'^base$', views.base, name='base'),
     url(r'^$', views.showHome, name='show_homes'),
     url(r'^yourHomes/$', views.yourHomes, name='yourHomes'),
+
+
+    url(r'^(?P<id>[0-9]+)/$', views.remove_a_ana, name='remove_a_ana'),
+    url(r'^(?P<id>[0-9]+)/$', views.updown, name='updown'),
+    url(r'^(?P<id>[0-9]+)/$', views.add_a_ana, name='add_a_ana'),
+
+    
     url(r'^home/(?P<home_id>[0-9]+)/$', views.detail_home, name='detail_home'),
     url(r'^image/(?P<img_id>[0-9]+)/delete/$', views.delete_image, name='delete_image'),
     url(r'^(?P<home_id>[0-9]+)/delete/$', views.home_delete, name='delete'),

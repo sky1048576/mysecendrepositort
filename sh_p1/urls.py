@@ -9,10 +9,15 @@ urlpatterns = [
     url(r'^login$', login_view, name='login_view'),
     url(r'^admin/', admin.site.urls),
     url(r'^persons/', include('persons.urls',namespace='persons')),
+    url(r'^likes/', include('likes.urls')),
 
     url('^', include('django.contrib.auth.urls')),
     url('^accounts/', include('accounts.urls',namespace='accounts')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
+
+
+
 ]
 
 from django.conf import settings

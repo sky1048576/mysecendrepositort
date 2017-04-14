@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'persons',
     'accounts',
-	'ckeditor',
+    'ckeditor',
+    'secretballot',
+	'likes',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -54,6 +56,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'secretballot.middleware.SecretBallotIpUseragentMiddleware',
+    "likes.middleware.SecretBallotUserIpUseragentMiddleware",
 ]
 
 ROOT_URLCONF = 'sh_p1.urls'

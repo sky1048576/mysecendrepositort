@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
+import secretballot
 # Create your models here.
 class Member(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -31,6 +32,18 @@ class Home(models.Model):
     	return str((self.pk))
     def get_absolute_url(self):
         return "/persons/home/%s/" %self.pk
+
+    def add_a_ana(self):
+        return reverse("persons:add_a_ana", kwargs={"id": self.id})
+    def remove_a_ana(self):
+        return reverse("persons:remove_a_ana", kwargs={"id": self.id})
+
+    def updown(self):
+        return reverse("persons:updown", kwargs={"id": self.id})
+
+secretballot.enable_voting_on(Home)
+
+
 class Picture(models.Model):
     homeid = models.ForeignKey(Home)
     image = models.URLField(blank=True,null=True)
